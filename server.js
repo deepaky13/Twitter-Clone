@@ -11,9 +11,12 @@ app.use(cookieParser());
 app.use(cors());
 
 import router from "./routes/authRouter.js";
+import userRouter from "./routes/userrouter.js";
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
+import { authenticateUser } from "./middleware/authMiddleware.js";
 
-app.use("/api/v1/auth", router);
+app.use("/api/v1/auth", authenticateUser, router);
+app.use("/api/v1/user", userRouter);
 
 app.use(errorHandlerMiddleware);
 

@@ -45,8 +45,15 @@ export const signUp = async (req, res) => {
 export const signIn = async (req, res) => {
   try {
     const { userName, password } = req.body;
+    console.log(userName);
+    
     const user = await User.findOne({ userName });
-    const isPasswordCorrect = await comparePassword(password, user.password);
+    console.log(user);
+
+    const isPasswordCorrect = await comparePassword(
+      password,
+      user.password || " "
+    );
     if (!user || !isPasswordCorrect) {
       res.status(401).json({ msg: "Invalid credientials" });
     }

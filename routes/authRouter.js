@@ -10,7 +10,7 @@ import { authenticateUser } from "../middleware/authMiddleware.js";
 
 const router = Router();
 
-router.get("/currentuser", authenticateUser, getCurrentUser);
+router.get("/currentuser", getCurrentUser);
 router.post("/register", validateSignUp, signUp);
 router.post("/login", signIn);
 router.post("/logout", logout);
